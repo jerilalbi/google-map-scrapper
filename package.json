@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.726.0",
     "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "node-telegram-bot-api": "^0.66.0",
     "playwright": "^1.49.1",
     "xlsx": "^0.18.5"
   }

@@ -1,29 +1,18 @@
-import { processData1, processDataTest, processPages } from "./dataProcess.js";
+import { processData1 } from "./dataProcess.js";
 
-export const prcessBatch1 = async (browser, batch) => {
+export const prcessBatch1 = async (browser, batch, index) => {
     try {
-        // const pages = await Promise.all(
-        //     batch.map(async (data) => await processPages(browser, data))
-        // )
-
-
-        // const successfulPages = pages.filter(page => page !== null);
-
-        // const result = [];
-        // for (let i = 0; i < successfulPages.length; i++) {
-        //     try {
-        //         const res = await processData1(successfulPages[i], batch[i]);
-        //         result.push(res)
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // }
-
         const data = await Promise.all(
-            batch.map(async (data) => await processDataTest(browser, data))
+            batch.map(async (data, i) => await processData1(browser, data, index, i))
         )
 
-        return data;
+        const errorData = data.filter(data => data === null)
+        if (errorData.length >= 5) {
+            throw new Error("max error occured")
+        }
+
+        const filtredData = data.filter(data => data !== null)
+        return filtredData;
     } catch (error) {
         throw error;
     }

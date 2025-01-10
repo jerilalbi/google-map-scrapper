@@ -1,7 +1,7 @@
 import { readExcel } from "./events/fileProcess.js";
 import { Scraper1 } from "./events/scraper1.js";
 
-export const isDebug = true;
+export const isDebug = false;
 
 (async () => {
     try {
