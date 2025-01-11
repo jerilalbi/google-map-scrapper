@@ -1,5 +1,6 @@
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import XLSX from 'xlsx';
+import { sendMessage } from './telegram';
 
 const s3Client = new S3Client({ region: "us-east-1" });
 
@@ -47,7 +48,8 @@ export const writeExcelToS3 = async (bucketName, fileName, workbook, newData, sh
         });
 
         await s3Client.send(command);
-        console.log("Excel file successfully updated on S3.");
+        console.log(`${fileName} successfully updated on S3.`);
+        await sendMessage(`${fileName} updated in S3`)
     } catch (error) {
         console.error("Error writing Excel file:", error);
         throw error;

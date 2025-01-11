@@ -49,14 +49,8 @@ export const Scraper1 = async (townData) => {
             } else {
                 await sendMessage(`finished index ${i + tabsPerBatch} || lenght: ${finalData.length}`);
 
-                if ((i + tabsPerBatch) % 50 === 0) {
+                if ((i + tabsPerBatch) % 15 === 0) {
                     await writeExcelToS3(bucketName, dataFileName, s3Data.workbook, finalData, s3Data.sheetName);
-                    await sendMessage("excel file updated");
-                }
-
-                if (errorList.length % 30 === 0) {
-                    await writeExcelToS3(bucketName, errorFileName, s3ErrorData.workbook, errorList, s3ErrorData.sheetName);
-                    await sendMessage("error file updated");
                 }
             }
         }
