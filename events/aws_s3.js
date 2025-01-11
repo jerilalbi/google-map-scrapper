@@ -1,6 +1,6 @@
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import XLSX from 'xlsx';
-import { sendMessage } from './telegram';
+import { sendMessage } from './telegram.js';
 
 const s3Client = new S3Client({ region: "us-east-1" });
 
